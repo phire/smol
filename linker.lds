@@ -9,13 +9,12 @@ PHDRS {
 
 SECTIONS {
     . = 0x10000 + SIZEOF_HEADERS;
+    .dynamic :  { *(.dynamic) } :text :dynamic
     .interp : { *(.interp) } :text :interp
     .text : {
         * (.text);
         * (.rodata);
     } : text
-
-    .dynamic :  { *(.dynamic) } :text :dynamic
 
     /DISCARD/ : {
         *(.note.gnu.property)

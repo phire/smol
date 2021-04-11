@@ -1,3 +1,4 @@
+#include <dlfcn.h>
 
 
 void write(const char* buffer, int size) {
@@ -24,7 +25,11 @@ constexpr const char string[] = "Hello World!\n";
 
 extern "C" {
 
+
+
 void _start() {
+    void *libSDL = dlopen("libSDL.so", RTLD_LAZY);
+
     write(string, sizeof(string));
     exit(0);
 }
