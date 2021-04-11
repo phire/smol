@@ -2,7 +2,7 @@
 all: smol-stripped
 
 smol: main.cpp Makefile linker.lds
-	gcc main.cpp -o smol -flto -Os -Wall -fno-unroll-loops -nostartfiles  -ffreestanding -Wl,-T,linker.lds -ldl
+	gcc main.cpp -o smol -flto -Os -Wall -fno-unroll-loops -nostartfiles -nostdlib  -ffreestanding -Wl,-T,linker.lds
 
 
 smol-stripped: smol

@@ -3,8 +3,7 @@ ENTRY(_start)
 PHDRS {
     headers PT_PHDR PHDRS ;
     interp PT_INTERP;
-    text PT_LOAD FILEHDR PHDRS AT (0x10000);
-    data PT_LOAD ;
+    text PT_LOAD FILEHDR PHDRS AT (0x10000) FLAGS(7);
     dynamic PT_DYNAMIC;
 }
 
@@ -16,10 +15,7 @@ SECTIONS {
         * (.rodata);
     } : text
 
-    . = . + 0x1000;
-
-    .data : { *(.data) } :data
-    .dynamic : ALIGN(0x1000) { *(.dynamic) } :data :dynamic
+    .dynamic :  { *(.dynamic) } :text :dynamic
 
     /DISCARD/ : {
         *(.note.gnu.property)
